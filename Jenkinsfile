@@ -1,7 +1,7 @@
 node {
 
-   def registryProjet='quenec/'
-   def IMAGE="${registryProjet}jenkins:versionJenkins-${env.BUILD_ID}"
+   def registryProjet='clemdepernet/'
+   def IMAGE="${registryProjet}nginx:version-${env.BUILD_ID}"
 
     stage('Clone') {
           checkout scm
@@ -18,7 +18,7 @@ node {
     }
 
     stage('Push') {
-          docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+          docker.withRegistry('https://registry.hub.docker.com', 'docker_login') {
               img.push 'latest'
               img.push()
           }
